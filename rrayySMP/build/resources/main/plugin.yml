@@ -1,9 +1,0 @@
-name: smpplugin
-version: 1.0
-main: com.rrayy.smp.smp
-api-version: 1.16
-command:
-  지급:
-    description: 기본 지급 아이템을 받습니다
-  몹제거:
-    description: 얼마나 많은 몹이 사라졌는지 확인합니다
