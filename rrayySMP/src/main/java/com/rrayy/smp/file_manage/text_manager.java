@@ -14,33 +14,23 @@ public class text_manager {
     public static final String get_item_list = null;
     private smp plugin;
     private ObjectOutputStream oos = null;
-    String file = this.plugin.getDataFolder() + "data.txt";
+    private String file = null;
 
     public text_manager(smp plugin) {
         this.plugin = plugin;
-
+        this.file = this.plugin.getDataFolder() + "data.txt";
     }
 
     public void save_file(ArrayList<String> data) {
         System.out.println(ChatColor.AQUA+"SMP:Saving..");
-        if (oos == null) {
-            try {
-                oos = new ObjectOutputStream(new FileOutputStream(file));
-                oos.writeObject(data);// 파일에 ArrayList 저장
-                oos.close();
-            } catch (Exception ex) {
+        try {
+            oos = new ObjectOutputStream(new FileOutputStream(file));
+            oos.writeObject(data);// 파일에 ArrayList 저장
+            oos.close();
+        } catch (Exception ex) {
 
-            }
-        } else {
-            try {
-                oos.writeObject(data);// 파일에 ArrayList 저장
-                oos.close();
-            } catch (Exception ex) {
-
-            }
         }
         System.out.println(ChatColor.AQUA+"SMP:Complete");
-
     }
 
     @SuppressWarnings("unchecked")
@@ -77,10 +67,6 @@ public class text_manager {
 
     public String getFile() {
         return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
     }
 
 }
