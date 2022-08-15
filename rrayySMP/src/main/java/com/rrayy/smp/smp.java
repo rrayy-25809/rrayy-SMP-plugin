@@ -1,23 +1,12 @@
 package com.rrayy.smp;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Animals;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.FallingBlock;
-import org.bukkit.entity.Flying;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -29,19 +18,20 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.rrayy.smp.file_manage.text_manager;
+import com.rrayy.smp.cleaner.cleaner;
 
 public class smp extends JavaPlugin implements Listener {
     @Getter private static smp instance;
-    int n = 0;
-    int count_killmob = 0;
     ArrayList<String> get_item_list = new ArrayList<>();
-    
+    int c_km;
+    int h_km;
+    boolean t = true;
     @Override
     public void onEnable() {     //플러그인 활성화 이벤트
         instance = this;
         getLogger().info("SMP on");
-        mob_clear();
         get_item_list = text_list();
+        cleaner.mob_clear(3);
     }
 
     @Override
@@ -49,7 +39,7 @@ public class smp extends JavaPlugin implements Listener {
         System.out.println("플러그인이 종료됩니다.");
         text_manager a = new text_manager(null);
         a.save_file(get_item_list);
-        getLogger().info(ChatColor.AQUA+"서버가 실행되는 동안"+ChatColor.GOLD + Integer.toString(count_killmob)+ChatColor.GREEN+"마리의 엔티티를 삭제하였습니다.");
+        getLogger().info(ChatColor.AQUA+"서버가 실행되는 동안"+ChatColor.GOLD + Integer.toString(5)+ChatColor.GREEN+"마리의 엔티티를 삭제하였습니다.");
     }
 
     @EventHandler
@@ -57,45 +47,12 @@ public class smp extends JavaPlugin implements Listener {
         ((CommandSender) p).sendMessage("'/지급' 으로 기본 지급템을 받으세요"); //접속한 플레이어에게 명령어 사용법 알려주기
 		p.setJoinMessage(ChatColor.AQUA+"플레이어"+ChatColor.GREEN+ p +ChatColor.AQUA +"님께서"+ChatColor.DARK_GREEN +"라이 SMP"+ChatColor.AQUA +"에 입장했습니다!");
 	}
-    @SuppressWarnings("deprecation")
-	public void mob_clear() {
-		Bukkit.getScheduler().scheduleAsyncRepeatingTask( this , new Runnable() {
-			@Override
-			public void run() {
-                try {
-                    for(Player alper : Bukkit.getOnlinePlayers()) {
-                        alper.sendMessage(ChatColor.GREEN+"2분 후, 모든 몹이 사라집니다");
-                    }
-                    TimeUnit.MINUTES.sleep(2);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
-                
-                final List<World> worlds = (List<World>)Bukkit.getServer().getWorlds();
-                final int wdsize = worlds.size() - 1;
-                final World[] world = worlds.toArray(new World[wdsize]);
-                for (int i = 0; i <= wdsize; ++i) {
-                    for (final Entity e : world[i].getEntities()) {
-                        if (e instanceof Monster || e instanceof Arrow || e instanceof Flying || e instanceof FallingBlock || e instanceof Item || e instanceof Animals) {
-                            n = n + 1;
-                            e.remove();
-                        }
-                    }
-                }
-                count_killmob = count_killmob + n;
-                for(Player alper : Bukkit.getOnlinePlayers()) {
-                    alper.sendMessage(ChatColor.GREEN+"몹"+ChatColor.GOLD + Integer.toString(n)+ChatColor.GREEN+"마리가 삭제되었습니다.");
-                }
-            }
-		}, 20 * 300, 20 * 300);
-		
-	}
-    
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (label.equalsIgnoreCase("지급")) {
 
-            if(n==0) {
+            if(t) {
                 sender.sendMessage(ChatColor.GREEN + "이미 기본지급 아이템을 받으셨습니다. 바꿀 수 없습니다.");
             } else if (args.length > 0) {
                 if ("아머러".equalsIgnoreCase(args[0])) {
@@ -152,7 +109,7 @@ public class smp extends JavaPlugin implements Listener {
             }
         }
         if (label.equalsIgnoreCase("몹제거")) {
-            sender.sendMessage(ChatColor.GREEN+"그동안 몹이"+ChatColor.GOLD + Integer.toString(n)+ChatColor.GREEN+"마리가 삭제되었습니다.");
+            sender.sendMessage(ChatColor.GREEN+"그동안 몹이"+ChatColor.GOLD + Integer.toString(5)+ChatColor.GREEN+"마리가 삭제되었습니다.");
         }
         return false;
     }

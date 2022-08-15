@@ -18,7 +18,7 @@ public class text_manager {
 
     public text_manager(smp plugin) {
         this.plugin = plugin;
-        this.file = this.plugin.getDataFolder() + "data.txt";
+        this.file = this.plugin.getDataFolder() + "/data.txt";
     }
 
     public void save_file(ArrayList<String> data) {
