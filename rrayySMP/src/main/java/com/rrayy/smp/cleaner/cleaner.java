@@ -18,7 +18,7 @@ public class cleaner{
     public cleaner(smp plugin) {
         this.plugin = plugin;
     }
-	public static int mob_clear(int ckm) {
+	public static int mob_clear(int ckm) throws InterruptedException{
         int hkm = 0;
         while (true) {
             try {
