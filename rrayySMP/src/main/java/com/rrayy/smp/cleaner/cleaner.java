@@ -9,7 +9,6 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-//import org.bukkit.plugin.Plugin;
 
 import com.rrayy.smp.smp;
 
@@ -18,7 +17,7 @@ public class cleaner{
     public cleaner(smp plugin) {
         this.plugin = plugin;
     }
-	public static int mob_clear(int ckm) throws InterruptedException{
+	public static int mob_clear(int ckm) {
         int hkm = 0;
         while (true) {
             try {

@@ -43,7 +43,7 @@ public class smp extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-	public void onJoin(PlayerJoinEvent p) {     //플레이어가 게임에 접속했을 때
+	public void onPlayerJoin(PlayerJoinEvent p) {     //플레이어가 게임에 접속했을 때
         ((CommandSender) p).sendMessage("'/지급' 으로 기본 지급템을 받으세요"); //접속한 플레이어에게 명령어 사용법 알려주기
 		p.setJoinMessage(ChatColor.AQUA+"플레이어"+ChatColor.GREEN+ p +ChatColor.AQUA +"님께서"+ChatColor.DARK_GREEN +"라이 SMP"+ChatColor.AQUA +"에 입장했습니다!");
 	}
@@ -131,7 +131,7 @@ public class smp extends JavaPlugin implements Listener {
         }
     }
     public ArrayList<String> text_list(){
-        text_manager a = new text_manager(null);
+        text_manager a = new text_manager(this);
         return a.get_file(get_item_list);
     }
 }
