@@ -10,45 +10,42 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-import com.rrayy.smp.smp;
-
 public class cleaner{
-    private smp plugin;
-    public cleaner(smp plugin) {
-        this.plugin = plugin;
-    }
-	public static int mob_clear(int ckm) {
-        int hkm = 0;
-        while (true) {
+    public int count = 0;
+	public void mob_clear() {
+        boolean whiles = false;
+        if (whiles) {
             try {
                 for(Player alper : Bukkit.getOnlinePlayers()) {
                     alper.sendMessage(ChatColor.GREEN+"2분 후, 모든 몹이 사라집니다");
                 }
                 TimeUnit.MINUTES.sleep(2);
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
+            } catch (InterruptedException error) {
+                // TODO Auto-generated catch block
+                error.printStackTrace();
             }
-            
-            final List<World> worlds = (List<World>)Bukkit.getServer().getWorlds();
-            final int wdsize = worlds.size() - 1;
-            final World[] world = worlds.toArray(new World[wdsize]);
-            for (int i = 0; i <= wdsize; ++i) {
-                for (final Entity e : world[i].getEntities()) {
-                    if (e instanceof LivingEntity) {
-                        hkm = hkm + 1;
-                        e.remove();
-                    }
+            whiles = true;
+            mob_clear();
+        }else{
+            remove();
+            for(Player alper : Bukkit.getOnlinePlayers()) {
+                alper.sendMessage(ChatColor.GREEN+"몹"+ChatColor.GOLD + Integer.toString(count)+ChatColor.GREEN+" 마리가 삭제되었습니다.");
+            }
+        }
+        
+    }
+
+    public void remove(){
+        final List<World> worlds = (List<World>)Bukkit.getServer().getWorlds();
+        final int wdsize = worlds.size() - 1;
+        final World[] world = worlds.toArray(new World[wdsize]);
+        for (int i = 0; i <= wdsize; ++i) {
+            for (final Entity e : world[i].getEntities()) {
+                if (e instanceof LivingEntity) {
+                    count = count + 1;
+                    e.remove();
                 }
             }
-            ckm = ckm + hkm;
-            for(Player alper : Bukkit.getOnlinePlayers()) {
-                alper.sendMessage(ChatColor.GREEN+"몹"+ChatColor.GOLD + Integer.toString(hkm)+ChatColor.GREEN+"마리가 삭제되었습니다.");
-            }
-            return ckm;
         }
-    };
-        
-    public smp getPlugin() {
-        return plugin;
     }
 }
