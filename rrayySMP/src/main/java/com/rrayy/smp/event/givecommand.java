@@ -12,8 +12,8 @@ public class givecommand  implements CommandExecutor {   //명령어 처리 클�
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         give_item gt = new give_item();
         gt.getsender(sender);
-        boolean getit = gt.gt();
-        if(getit) {
+        boolean ifitem = gt.item_true();
+        if(ifitem) {
             sender.sendMessage(ChatColor.GREEN + "이미 기본지급 아이템을 받으셨습니다. 바꿀 수 없습니다.");
         } else if (args.length > 0) {
             if (args[0].equals("어머러")) {

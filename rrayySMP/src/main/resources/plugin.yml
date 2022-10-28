@@ -1,5 +1,5 @@
 name: smpplugin
-version: 1.0
+version: 2.2
 main: com.rrayy.smp.smp
 api-version: 1.16
 description: 라이 SMP를 위한 야생 플러그인
@@ -7,5 +7,5 @@ commands:
   지급:
     description: 기본 지급 아이템을 받습니다
     usage: 기본 지급 아이템을 선택합니다.'아머러, 벌목꾼, 인첸터, 갑부'
-  #몹제거:
-    #description: 얼마나 많은 몹이 사라졌는지 확인합니다
+  몹:
+    description: 얼마나 많은 몹이 사라졌는지 확인합니다

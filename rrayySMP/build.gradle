@@ -3,7 +3,7 @@ plugins {
 }
 //gradle build
 group 'com.rrayy'
-version '2.1-SNAPSHOT'
+version '2.2-SNAPSHOT'
 
 compileJava.options.encoding = 'UTF-8'
 tasks.withType(JavaCompile) {
