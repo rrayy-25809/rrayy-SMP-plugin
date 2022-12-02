@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class give_item {
-    CommandSender sender;
+    public CommandSender sender;
     Player[] item_Player;
     public void getsender(CommandSender s){
         sender = s;
@@ -55,7 +55,7 @@ public class give_item {
         book.setAmount(5);
         player.getInventory().addItem(anvil, enchant1, enchant2, book);  //플레이어의 인벤토리를 가져와 아이템을 집어넣음
     }
-    public void money(){
+    public void moneyman(){
         Player player = (Player)sender; //명령어 사용자 객체를 플레이어 객체로 변환할 수 있음
         player.sendMessage(ChatColor.GREEN + "기본지급 아이템을 '갑부' 로 정하셨습니다. 바꿀 수 없습니다.");
         ItemStack irons = new ItemStack(Material.IRON_INGOT);
@@ -67,6 +67,14 @@ public class give_item {
         player.getInventory().addItem(irons, golds, diamonds);  //플레이어의 인벤토리를 가져와 아이템을 집어넣음
     }
     public boolean item_true(){
-        return false;
+        boolean r = true;
+        for(Player str : item_Player) {
+            if(str.equals((Player)sender)) {
+                r = false;
+            }else{
+                r = true;
+            }
+        }
+        return r;
     }
 }

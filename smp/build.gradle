@@ -8,6 +8,9 @@ version '2.2-SNAPSHOT'
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+    maven {
+        url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
 }
 
 dependencies {
@@ -17,7 +20,7 @@ dependencies {
     implementation 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
 }
 
-tasks.named('test') {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }

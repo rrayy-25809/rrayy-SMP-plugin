@@ -12,8 +12,7 @@ public class givecommand  implements CommandExecutor {   //명령어 처리 클�
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         give_item gt = new give_item();
         gt.getsender(sender);
-        boolean ifitem = gt.item_true();
-        if(ifitem) {
+        if(gt.item_true()) {
             sender.sendMessage(ChatColor.GREEN + "이미 기본지급 아이템을 받으셨습니다. 바꿀 수 없습니다.");
         } else if (args.length > 0) {
             if (args[0].equals("어머러")) {
@@ -23,7 +22,7 @@ public class givecommand  implements CommandExecutor {   //명령어 처리 클�
             }else if (args[0].equals("인첸터")) {
                 gt.enchanter();
             }else if (args[0].equals("갑부")) {
-                gt.money();
+                gt.moneyman();
             } else {
                 return false;
             }
