@@ -13,11 +13,11 @@ import org.bukkit.inventory.ItemStack;
 
 public class event implements Listener{
     @EventHandler
-    public void onJoin(PlayerJoinEvent p) {     //플레이어가 게임에 접속했을 때
-        Player pl = p.getPlayer();
-        pl.sendMessage("'/지급' 으로 기본 지급템을 받으세요"); //접속한 플레이어에게 명령어 사용법 알려주기
-		p.setJoinMessage(ChatColor.AQUA+"플레이어 "+ChatColor.GREEN+ pl.getDisplayName() +ChatColor.AQUA +" 님께서"+ChatColor.GREEN +" 라이 SMP"+ChatColor.AQUA +" 에 입장했습니다!");
-	}
+    public void onJoin(PlayerJoinEvent pe) {     //플레이어가 게임에 접속했을 때
+        Player pl = pe.getPlayer();
+		pe.setJoinMessage(ChatColor.AQUA+"플레이어 "+ChatColor.GREEN+ pl.getDisplayName() +ChatColor.AQUA +" 님께서"+ChatColor.GREEN +" 라이 SMP"+ChatColor.AQUA +" 에 입장했습니다!");
+    }
+
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {   //플레이어가 상호작용을 할 때 실행
         Player player = e.getPlayer();  //상호작용 한 플레이어

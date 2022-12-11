@@ -1,4 +1,4 @@
 .vscode
 .gradle
-smp/build
-smp/bin
+build
+bin

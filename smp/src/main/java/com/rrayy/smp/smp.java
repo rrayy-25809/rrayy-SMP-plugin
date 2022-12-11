@@ -10,7 +10,6 @@ public class smp extends JavaPlugin{
     public void onEnable() {
         getLogger().info("라이 smp plugin이 활성화 되었습니다");
         getServer().getPluginManager().registerEvents(new event(), this);
-        getCommand("지급").setExecutor(new givecommand());
-        getCommand("몹").setExecutor(new killcommand());
+        //getCommand("tpa").setExecutor(new killcommand());
     }
 }
