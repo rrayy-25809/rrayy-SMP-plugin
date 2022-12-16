@@ -1,8 +1,8 @@
 package com.rrayy.smp;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import com.rrayy.smp.event.*;
-
+import com.rrayy.smp.event.event;
+import com.rrayy.smp.command.tpa;
 
 public class smp extends JavaPlugin{
 
@@ -10,6 +10,6 @@ public class smp extends JavaPlugin{
     public void onEnable() {
         getLogger().info("라이 smp plugin이 활성화 되었습니다");
         getServer().getPluginManager().registerEvents(new event(), this);
-        getCommand("지급").setExecutor(new givecommand());
+        getCommand("tpa").setExecutor(new tpa());
     }
 }
